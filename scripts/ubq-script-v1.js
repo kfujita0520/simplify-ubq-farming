@@ -24,14 +24,12 @@ async function main() {
   const MasterChefV2 = await hre.ethers.getContractAt("IMasterChefV2", "0xdae807071b5AC7B6a2a343beaD19929426dBC998");
     //Needed when claiming UBQ token for staking reward.
   const SECONDS_IN_A_DAY = 86400
-  const UbiquityAlgorithmicDollarManagerAddr = "0x4DA97a8b831C345dBe6d16FF7432DF2b7b776d98";
-  const Base3PoolAddr = "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7";
 
   const [deployer, user1] = await hre.ethers.getSigners();
   console.log("Deployer: ", deployer.address);
 
-  const DirectUBQFarmerContract = await hre.ethers.getContractFactory("DirectUBQFarmer");
-  const DirectUBQFamarer = await DirectUBQFarmerContract.deploy(UbiquityAlgorithmicDollarManagerAddr, Base3PoolAddr, DepositZapUAD.address);
+  const DirectUBQFarmerContract = await hre.ethers.getContractFactory("DirectUBQFarmerV1");
+  const DirectUBQFamarer = await DirectUBQFarmerContract.deploy();
   await DirectUBQFamarer.deployed();
   console.log("DirectUBQFamarer deployed to: ", DirectUBQFamarer.address);
 
